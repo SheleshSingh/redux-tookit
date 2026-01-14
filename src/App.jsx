@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrement,
@@ -6,6 +6,7 @@ import {
   reset,
   setName,
 } from "./store/slice/counterSlice";
+import { fetchUser } from "./store/slice/userSlice";
 
 const App = () => {
   const counter = useSelector((state) => state.counter);
@@ -13,6 +14,10 @@ const App = () => {
   const dispatch = useDispatch();
   console.log(value);
   console.log(name);
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
   return (
     <>
       <h1>
